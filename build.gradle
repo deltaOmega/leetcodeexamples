@@ -6,33 +6,58 @@ apply plugin: 'scala'
 
 sourceCompatibility = 1.8
 
-repositories {
-    mavenCentral()
+
+
+allprojects {
+
+    apply plugin: 'java'
+    apply plugin: 'scala'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+
+        implementation 'org.scala-lang:scala-library:2.12.4'
+        testImplementation 'org.scalatest:scalatest_2.12:3.0.8'
+        testImplementation 'junit:junit:4.12'
+
+    }
+
 }
 
-dependencies {
+subprojects {
 
-    implementation 'org.scala-lang:scala-library:2.12.4'
-    testImplementation 'org.scalatest:scalatest_2.12:3.0.8'
-    testImplementation 'junit:junit:4.12'
+    repositories {
+        mavenCentral()
+    }
 
-}
+    dependencies {
 
-sourceSets {
-    main {
-        scala {
-            srcDirs = ['src/main/scala', 'src/main/java']
+        implementation 'org.scala-lang:scala-library:2.12.4'
+        testImplementation 'org.scalatest:scalatest_2.12:3.0.8'
+        testImplementation 'junit:junit:4.12'
+
+    }
+
+    sourceSets {
+        main {
+            scala {
+                srcDirs = ['src/main/scala', 'src/main/java']
+            }
+            java {
+                srcDirs = []
+            }
         }
-        java {
-            srcDirs = []
+        test {
+            scala {
+                srcDirs = ['src/test/scala', 'src/test/java']
+            }
+            java {
+                srcDirs = []
+            }
         }
     }
-    test {
-        scala {
-            srcDirs = ['src/test/scala', 'src/test/java']
-        }
-        java {
-            srcDirs = []
-        }
-    }
 }
+

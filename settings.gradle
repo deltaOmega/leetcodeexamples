@@ -1,2 +1,5 @@
 rootProject.name = 'solutions'
+include 'arrays'
+include 'lists'
+include 'trees'
 
